@@ -4,27 +4,208 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fourth Contact | بث مباشر</title>
-  <link rel="icon" href="data:," /> <!-- فكون فارغ لتجنب طلب مفقود -->
+  <meta name="description" content="بث مباشر عالي الجودة لقناة Fourth Contact — بدون انقطاع، متوافق مع جميع الأجهزة." />
+
+  <!-- Google Font: Tajawal -->
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Video.js CSS -->
   <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #e50914;
+      --bg-dark: #080808;
+      --text-light: #f0f0f0;
+      --text-gray: #cccccc;
+      --panel-bg: rgba(18, 18, 18, 0.85);
+    }
+
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* شريط الأخبار العاجلة */
+    .news-ticker {
+      background: var(--primary);
+      color: white;
+      height: 40px;
+      overflow: hidden;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+    }
+
+    .ticker-wrapper {
+      display: flex;
+      white-space: nowrap;
+      animation: scrollTicker 25s linear infinite;
+    }
+
+    .ticker-wrapper span {
+      padding: 0 25px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      border-left: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    @keyframes scrollTicker {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* شريط العلامة + اللوجو */
+    .brand-bar {
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      padding: 18px 24px;
+      position: fixed;
+      top: 40px;
+      width: 100%;
+      z-index: 999;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-link {
+      display: block;
+      padding: 0;
+      margin: 0;
+      text-decoration: none;
+    }
+
+    .site-logo {
+      height: 80px;
+      max-width: 360px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+      transition: transform 0.2s ease;
+    }
+
+    .site-logo:hover {
+      transform: scale(1.05);
+    }
+
+    .logo-link:hover .site-logo {
+      filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.8));
+    }
+
+    /* المحتوى الرئيسي */
+    .main-content {
+      margin-top: 120px;
+      padding: 0 20px;
+      max-width: 1400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .player-wrapper {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+      background: #000;
+    }
+
+    .info-panel {
+      margin-top: 30px;
+      background: var(--panel-bg);
+      padding: 24px;
+      border-radius: 14px;
+      max-width: 800px;
+      margin: 30px auto 50px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .info-panel h2 {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+      color: white;
+    }
+
+    .info-panel p {
+      color: var(--text-gray);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 20px;
+      color: var(--text-gray);
+      font-size: 0.95rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      margin-top: 20px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .brand-bar {
+        padding: 15px 16px;
+      }
+      .site-logo {
+        height: 40px;
+      }
+      .ticker-wrapper span {
+        padding: 0 18px;
+        font-size: 0.9rem;
+      }
+      .main-content {
+        margin-top: 110px;
+        padding: 0 15px;
+      }
+      .info-panel {
+        padding: 20px 16px;
+      }
+      .info-panel h2 {
+        font-size: 1.4rem;
+      }
+    }
+
+    /* تحسين مشغل الفيديو */
+    .video-js .vjs-control-bar {
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    }
+  </style>
 </head>
 <body>
-  <!-- شريط الأخبار العاجلة -->
+
+  <!-- شريط الأخبار -->
   <div class="news-ticker">
     <div class="ticker-wrapper">
-      <span>🔴 بث مباشر |Fourth Contact — جودة عالية بدون انقطاع</span>
+      <span>🔴 بث مباشر | Fourth Contact — جودة عالية بدون انقطاع</span>
       <span>📢 تحديث: تمت ترقية خوادم البث لضمان تجربة سلسة</span>
       <span>🎬 لا تفوت أحدث البرامج الحصرية!</span>
     </div>
   </div>
 
-  <!-- الرأس (بدون لوجو حسب طلبك) -->
+  <!-- الشعار (اللوجو) -->
   <header class="brand-bar">
-    <h1>Fourth Contact</h1>
+    <a href="#" class="logo-link">
+      <img src="https://i.imgur.com/8g0rrKG.png" alt="Fourth Contact Logo" class="site-logo" />
+    </a>
   </header>
 
-  <!-- منطقة المحتوى الرئيسية -->
+  <!-- المحتوى -->
   <main class="main-content">
     <div class="player-wrapper">
       <video-js
@@ -32,14 +213,15 @@
         class="video-js vjs-big-play-centered"
         controls
         autoplay
+        muted
         preload="auto"
         fluid="true"
         aspectRatio="16:9"
         data-setup="{}"
       >
-        <!-- ⚠️ عدّل هذا الرابط إلى رابط البث الخاص بك (HTTPS) -->
+        <!-- ⬇️ 🚨 🚨 🚨 مهم جدًا: عدّل هذا الرابط إلى رابط البث الخاص بك (يجب أن يكون HTTPS) -->
         <source src="https://ktvlive.online/stream/hls/ch1.m3u8" type="application/x-mpegURL" />
-        <p class="vjs-no-js">المتصفح لا يدعم تشغيل الفيديو.</p>
+        <p class="vjs-no-js">متصفحك لا يدعم تشغيل الفيديو. يُرجى استخدام Chrome, Firefox, أو Safari.</p>
       </video-js>
     </div>
 
@@ -62,8 +244,130 @@
           overrideNative: true
         }
       },
-      liveui: true // يظهر أدوات تحكم خاصة بالبث الحي
+      liveui: true,
+      autoplay: true,
+      muted: true
+    });
+
+    // إضافة زر لإلغاء الكتم عند التشغيل (لتحسين UX)
+    player.on('play', () => {
+      if (player.muted()) {
+        const unmuteButton = document.createElement('div');
+        unmuteButton.innerHTML = '🔊 انقر لإلغاء الكتم';
+        unmuteButton.style.cssText = `
+          position: absolute;
+          top: 20px;
+          left: 20px;
+          background: rgba(0,0,0,0.7);
+          color: white;
+          padding: 8px 16px;
+          border-radius: 4px;
+          font-size: 14px;
+          cursor: pointer;
+          z-index: 10;
+        `;
+        const playerEl = document.querySelector('.video-js');
+        playerEl.appendChild(unmuteButton);
+        unmuteButton.onclick = () => {
+          player.muted(false);
+          unmuteButton.remove();
+        };
+      }
     });
   </script>
 </body>
-</html>
+  </html>      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      padding: 18px 24px;
+      position: fixed;
+      top: 40px;
+      width: 100%;
+      z-index: 999;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .brand-bar h1 {
+      font-weight: 800;
+      font-size: 1.8rem;
+      letter-spacing: -0.5px;
+      background: linear-gradient(to right, #fff, #ddd);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .main-content {
+      margin-top: 120px;
+      padding: 0 20px;
+      max-width: 1400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .player-wrapper {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+      background: #000;
+    }
+
+    .info-panel {
+      margin-top: 30px;
+      background: var(--panel-bg);
+      padding: 24px;
+      border-radius: 14px;
+      max-width: 800px;
+      margin: 30px auto 50px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .info-panel h2 {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+      color: white;
+    }
+
+    .info-panel p {
+      color: var(--text-gray);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 20px;
+      color: var(--text-gray);
+      font-size: 0.95rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      margin-top: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .brand-bar h1 {
+        font-size: 1.5rem;
+      }
+      .ticker-wrapper span {
+        padding: 0 18px;
+        font-size: 0.9rem;
+      }
+      .info-panel {
+        padding: 20px 16px;
+      }
+      .info-panel h2 {
+        font-size: 1.4rem;
+      }
+      .main-content {
+        margin-top: 110px;
+        padding: 0 15px;
+      }
+    }
+
+    .video-js .vjs-control-bar {
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    }
+  </style>
+</head>
