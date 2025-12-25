@@ -1,0 +1,168 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #e50914; /* لون شبيه بـ Shahid */
+  --primary-alt: #222222;
+  --text-light: #f0f0f0;
+  --text-gray: #cccccc;
+  --bg-dark: #080808;
+  --panel-bg: rgba(18, 18, 18, 0.85);
+}
+
+body {
+  font-family: 'Tajawal', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* شريط الأخبار العاجلة */
+.news-ticker {
+  background: var(--primary);
+  color: white;
+  height: 40px;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+}
+
+.ticker-wrapper {
+  display: flex;
+  white-space: nowrap;
+  animation: scrollTicker 25s linear infinite;
+}
+
+.ticker-wrapper span {
+  padding: 0 25px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.ticker-wrapper span:first-child {
+  padding-right: 30px;
+}
+
+@keyframes scrollTicker {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+/* شريط العلامة التجارية */
+.brand-bar {
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  padding: 18px 24px;
+  position: fixed;
+  top: 40px;
+  width: 100%;
+  z-index: 999;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.brand-bar h1 {
+  font-weight: 800;
+  font-size: 1.8rem;
+  letter-spacing: -0.5px;
+  background: linear-gradient(to right, #fff, #ddd);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* المحتوى الرئيسي */
+.main-content {
+  margin-top: 120px;
+  padding: 0 20px;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.player-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+  background: #000;
+}
+
+/* مشغل فيديو: يرث أسلوب Video.js */
+
+.info-panel {
+  margin-top: 30px;
+  background: var(--panel-bg);
+  padding: 24px;
+  border-radius: 14px;
+  max-width: 800px;
+  margin: 30px auto 50px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.info-panel h2 {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+  color: white;
+}
+
+.info-panel p {
+  color: var(--text-gray);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+/* التذييل */
+.footer {
+  text-align: center;
+  padding: 20px;
+  color: var(--text-gray);
+  font-size: 0.95rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  margin-top: 20px;
+}
+
+/* التحسينات للموبايل */
+@media (max-width: 768px) {
+  .brand-bar h1 {
+    font-size: 1.5rem;
+  }
+
+  .ticker-wrapper span {
+    padding: 0 18px;
+    font-size: 0.9rem;
+  }
+
+  .info-panel {
+    padding: 20px 16px;
+  }
+
+  .info-panel h2 {
+    font-size: 1.4rem;
+  }
+
+  .main-content {
+    margin-top: 110px;
+    padding: 0 15px;
+  }
+}
+
+/* أسلوب Video.js مخصص (للمظهر الحديث) */
+.video-js {
+  font-family: 'Tajawal', sans-serif;
+}
+
+.video-js .vjs-control-bar {
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+}
