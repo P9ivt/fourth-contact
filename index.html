@@ -20,12 +20,13 @@
     }
 
     :root {
-      /* الألوان المستوحاة من الصورة */
       --bg-gradient: linear-gradient(135deg, #0f0c29, #24243e);
       --accent-purple: #8e2de2;
       --accent-pink: #ff416c;
       --text-white: #ffffff;
       --text-gray: #cccccc;
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --card-border: rgba(255, 255, 255, 0.1);
     }
 
     body {
@@ -104,7 +105,7 @@
       overflow: hidden;
       box-shadow: 0 0 30px rgba(142, 45, 226, 0.4);
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid var(--card-border);
     }
 
     .offline-message {
@@ -118,6 +119,66 @@
       border-radius: 16px;
       margin-top: 20px;
       max-width: 800px;
+    }
+
+    /* مربع معلومات البث */
+    .broadcast-info {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 20px;
+      max-width: 800px;
+      text-align: center;
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+
+    .broadcast-info h3 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--accent-purple);
+      margin-bottom: 10px;
+    }
+
+    .broadcast-info p {
+      color: var(--text-gray);
+      font-weight: 500;
+    }
+
+    /* زر تابعنا على تيليجرام */
+    .telegram-cta {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 20px;
+      max-width: 800px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .telegram-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .telegram-cta h3 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--accent-pink);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .telegram-cta p {
+      color: var(--text-gray);
+      font-weight: 500;
+      font-size: 1.05rem;
     }
 
     .footer {
@@ -167,6 +228,11 @@
         margin-top: 110px;
         padding: 0 15px;
       }
+      .broadcast-info,
+      .telegram-cta {
+        padding: 16px;
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
@@ -209,6 +275,18 @@
     <div class="offline-message" id="offlineMessage">
       ⚠️ البث غير متاح حاليًا. يُرجى المحاولة لاحقًا.
     </div>
+
+    <!-- مربع معلومات البث -->
+    <div class="broadcast-info">
+      <h3>Fourth Contact</h3>
+      <p>بث مباشر حصري — جودة عالية بدون انقطاع. متوافق مع جميع الأجهزة.</p>
+    </div>
+
+    <!-- زر تابعنا على تيليجرام -->
+    <div class="telegram-cta" onclick="window.open('https://t.me/IKCQP', '_blank')">
+      <h3>كن من أوائل المنضمين ✨</h3>
+      <p>سيتم الكشف عن التفاصيل قريباً جداً</p>
+    </div>
   </main>
 
   <footer class="footer">
@@ -221,7 +299,12 @@
     const player = videojs('live-player', {
       html5: {
         hls: {
-          overrideNative: true
+          overrideNative: true,
+          // تحسين أداء النت الضعيف
+          autoLevelEnabled: true,
+          startLevel: -1, // بدء بأدنى جودة
+          maxBufferLength: 30, // تقليل التخزين المؤقت
+          maxMaxBufferLength: 60
         }
       },
       liveui: true,
@@ -229,7 +312,7 @@
       muted: true
     });
 
-    // تفعيل الشاشة الكاملة عند التشغيل (إن أمكن)
+    // تفعيل الشاشة الكاملة عند التشغيل
     player.on('play', () => {
       if (document.fullscreenEnabled && !document.fullscreenElement) {
         document.documentElement.requestFullscreen().catch(() => {});
@@ -244,4 +327,3 @@
   </script>
 </body>
 </html>
-
