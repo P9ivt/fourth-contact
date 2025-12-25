@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fourth Contact | بث مباشر</title>
-  <meta name="description" content="بث مباشر عالي الجودة لقناة Fourth Contact — بدون انقطاع، متوافق مع جميع الأجهزة." />
+  <meta name="description" content="بث مباشر حصري لقناة Fourth Contact — جودة عالية، بدون انقطاع." />
 
   <!-- Google Font: Tajawal -->
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet" />
@@ -20,24 +20,26 @@
     }
 
     :root {
-      --primary: #e50914;
-      --bg-dark: #080808;
-      --text-light: #f0f0f0;
+      /* الألوان المستوحاة من الصورة */
+      --bg-gradient: linear-gradient(135deg, #0f0c29, #24243e);
+      --accent-purple: #8e2de2;
+      --accent-pink: #ff416c;
+      --text-white: #ffffff;
       --text-gray: #cccccc;
-      --panel-bg: rgba(18, 18, 18, 0.85);
     }
 
     body {
       font-family: 'Tajawal', sans-serif;
-      background-color: var(--bg-dark);
-      color: var(--text-light);
+      background: var(--bg-gradient);
+      color: var(--text-white);
       line-height: 1.6;
       overflow-x: hidden;
+      min-height: 100vh;
     }
 
-    /* شريط الأخبار العاجلة */
+    /* شريط الأخبار */
     .news-ticker {
-      background: var(--primary);
+      background: var(--accent-purple);
       color: white;
       height: 40px;
       overflow: hidden;
@@ -47,105 +49,75 @@
       z-index: 1000;
       display: flex;
       align-items: center;
-    }
-
-    .ticker-wrapper {
-      display: flex;
-      white-space: nowrap;
-      animation: scrollTicker 25s linear infinite;
-    }
-
-    .ticker-wrapper span {
-      padding: 0 25px;
-      font-size: 0.95rem;
       font-weight: 500;
-      border-left: 1px solid rgba(255, 255, 255, 0.3);
+      font-size: 0.95rem;
     }
 
-    @keyframes scrollTicker {
-      0% { transform: translateX(100%); }
+    .ticker-content {
+      white-space: nowrap;
+      padding-left: 100%;
+      animation: ticker 25s linear infinite;
+    }
+
+    @keyframes ticker {
+      0% { transform: translateX(0); }
       100% { transform: translateX(-100%); }
     }
 
-    /* شريط العلامة + اللوجو */
+    /* الشعار */
     .brand-bar {
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0, 0, 0, 0.6);
       backdrop-filter: blur(5px);
-      -webkit-backdrop-filter: blur(5px);
       padding: 18px 24px;
       position: fixed;
       top: 40px;
       width: 100%;
       z-index: 999;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       display: flex;
       align-items: center;
     }
 
     .logo-link {
       display: block;
-      padding: 0;
-      margin: 0;
-      text-decoration: none;
     }
 
     .site-logo {
-      height: 80px;
-      max-width: 360px;
+      height: 36px;
+      max-width: 220px;
       object-fit: contain;
-      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
-      transition: transform 0.2s ease;
+      filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.5));
     }
 
-    .site-logo:hover {
-      transform: scale(1.05);
-    }
-
-    .logo-link:hover .site-logo {
-      filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.8));
-    }
-
-    /* المحتوى الرئيسي */
+    /* المحتوى */
     .main-content {
       margin-top: 120px;
       padding: 0 20px;
-      max-width: 1400px;
-      margin-left: auto;
-      margin-right: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .player-wrapper {
       width: 100%;
       max-width: 1200px;
-      margin: 0 auto;
-      border-radius: 12px;
+      border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
-      background: #000;
-    }
-
-    .info-panel {
-      margin-top: 30px;
-      background: var(--panel-bg);
-      padding: 24px;
-      border-radius: 14px;
-      max-width: 800px;
-      margin: 30px auto 50px;
+      box-shadow: 0 0 30px rgba(142, 45, 226, 0.4);
       backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    .info-panel h2 {
-      font-size: 1.6rem;
-      margin-bottom: 12px;
-      color: white;
-    }
-
-    .info-panel p {
-      color: var(--text-gray);
-      font-size: 1.05rem;
-      line-height: 1.7;
+    .offline-message {
+      display: none;
+      text-align: center;
+      padding: 60px 20px;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--accent-pink);
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 16px;
+      margin-top: 20px;
+      max-width: 800px;
     }
 
     .footer {
@@ -153,37 +125,48 @@
       padding: 20px;
       color: var(--text-gray);
       font-size: 0.95rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      margin-top: 20px;
+      margin-top: 40px;
     }
 
-    /* Responsive */
+    /* Video.js Customization */
+    .video-js {
+      font-family: 'Tajawal', sans-serif;
+    }
+
+    .video-js .vjs-control-bar {
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .video-js .vjs-big-play-button {
+      background: var(--accent-purple);
+      border: 2px solid white;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    }
+
+    .video-js .vjs-play-progress,
+    .video-js .vjs-load-progress,
+    .video-js .vjs-fullscreen-control {
+      background: var(--accent-pink);
+    }
+
+    .video-js .vjs-menu-item:hover,
+    .video-js .vjs-play-control {
+      background: var(--accent-purple);
+    }
+
     @media (max-width: 768px) {
       .brand-bar {
         padding: 15px 16px;
       }
       .site-logo {
-        height: 40px;
-      }
-      .ticker-wrapper span {
-        padding: 0 18px;
-        font-size: 0.9rem;
+        height: 32px;
       }
       .main-content {
         margin-top: 110px;
         padding: 0 15px;
       }
-      .info-panel {
-        padding: 20px 16px;
-      }
-      .info-panel h2 {
-        font-size: 1.4rem;
-      }
-    }
-
-    /* تحسين مشغل الفيديو */
-    .video-js .vjs-control-bar {
-      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
     }
   </style>
 </head>
@@ -191,21 +174,19 @@
 
   <!-- شريط الأخبار -->
   <div class="news-ticker">
-    <div class="ticker-wrapper">
-      <span>🔴 بث مباشر | Fourth Contact — جودة عالية بدون انقطاع</span>
-      <span>📢 تحديث: تمت ترقية خوادم البث لضمان تجربة سلسة</span>
-      <span>🎬 لا تفوت أحدث البرامج الحصرية!</span>
+    <div class="ticker-content">
+      📰 أخبار عاجلة: إطلاق بث مباشر حصري على منصة Fourth Contact! | متابعة دون انقطاع | جودة عالية HD
     </div>
   </div>
 
-  <!-- الشعار (اللوجو) -->
+  <!-- الشعار -->
   <header class="brand-bar">
     <a href="#" class="logo-link">
       <img src="https://i.imgur.com/8g0rrKG.png" alt="Fourth Contact Logo" class="site-logo" />
     </a>
   </header>
 
-  <!-- المحتوى -->
+  <!-- المحتوى الرئيسي -->
   <main class="main-content">
     <div class="player-wrapper">
       <video-js
@@ -214,20 +195,19 @@
         controls
         autoplay
         muted
-        preload="auto"
+        preload="metadata"
         fluid="true"
         aspectRatio="16:9"
         data-setup="{}"
       >
-        <!-- ⬇️ 🚨 🚨 🚨 مهم جدًا: عدّل هذا الرابط إلى رابط البث الخاص بك (يجب أن يكون HTTPS) -->
-        <source src="https://ktvlive.online/stream/hls/ch1.m3u8" type="application/x-mpegURL" />
-        <p class="vjs-no-js">متصفحك لا يدعم تشغيل الفيديو. يُرجى استخدام Chrome, Firefox, أو Safari.</p>
+        <source src="https://py.dencreak.com/alwan_sd1.m3u8" type="application/x-mpegURL" />
+        <p class="vjs-no-js">متصفحك لا يدعم تشغيل الفيديو.</p>
       </video-js>
     </div>
 
-    <div class="info-panel">
-      <h2>قناة Fourth Contact</h2>
-      <p>استمتع ببث مباشر عالي الجودة، بدون إعلانات مزعجة، متوافق مع جميع الأجهزة.</p>
+    <!-- رسالة تظهر فقط إذا فشل البث -->
+    <div class="offline-message" id="offlineMessage">
+      ⚠️ البث غير متاح حاليًا. يُرجى المحاولة لاحقًا.
     </div>
   </main>
 
@@ -235,7 +215,7 @@
     <p>&copy; 2025 Fourth Contact. جميع الحقوق محفوظة.</p>
   </footer>
 
-  <!-- Video.js + دعم HLS -->
+  <!-- Video.js -->
   <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
   <script>
     const player = videojs('live-player', {
@@ -249,125 +229,18 @@
       muted: true
     });
 
-    // إضافة زر لإلغاء الكتم عند التشغيل (لتحسين UX)
+    // تفعيل الشاشة الكاملة عند التشغيل (إن أمكن)
     player.on('play', () => {
-      if (player.muted()) {
-        const unmuteButton = document.createElement('div');
-        unmuteButton.innerHTML = '🔊 انقر لإلغاء الكتم';
-        unmuteButton.style.cssText = `
-          position: absolute;
-          top: 20px;
-          left: 20px;
-          background: rgba(0,0,0,0.7);
-          color: white;
-          padding: 8px 16px;
-          border-radius: 4px;
-          font-size: 14px;
-          cursor: pointer;
-          z-index: 10;
-        `;
-        const playerEl = document.querySelector('.video-js');
-        playerEl.appendChild(unmuteButton);
-        unmuteButton.onclick = () => {
-          player.muted(false);
-          unmuteButton.remove();
-        };
+      if (document.fullscreenEnabled && !document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
       }
+    });
+
+    // عرض رسالة إذا فشل البث
+    player.on('error', () => {
+      document.querySelector('.player-wrapper').style.display = 'none';
+      document.getElementById('offlineMessage').style.display = 'block';
     });
   </script>
 </body>
-  </html>      background: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(5px);
-      padding: 18px 24px;
-      position: fixed;
-      top: 40px;
-      width: 100%;
-      z-index: 999;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .brand-bar h1 {
-      font-weight: 800;
-      font-size: 1.8rem;
-      letter-spacing: -0.5px;
-      background: linear-gradient(to right, #fff, #ddd);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .main-content {
-      margin-top: 120px;
-      padding: 0 20px;
-      max-width: 1400px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .player-wrapper {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
-      background: #000;
-    }
-
-    .info-panel {
-      margin-top: 30px;
-      background: var(--panel-bg);
-      padding: 24px;
-      border-radius: 14px;
-      max-width: 800px;
-      margin: 30px auto 50px;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .info-panel h2 {
-      font-size: 1.6rem;
-      margin-bottom: 12px;
-      color: white;
-    }
-
-    .info-panel p {
-      color: var(--text-gray);
-      font-size: 1.05rem;
-      line-height: 1.7;
-    }
-
-    .footer {
-      text-align: center;
-      padding: 20px;
-      color: var(--text-gray);
-      font-size: 0.95rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      margin-top: 20px;
-    }
-
-    @media (max-width: 768px) {
-      .brand-bar h1 {
-        font-size: 1.5rem;
-      }
-      .ticker-wrapper span {
-        padding: 0 18px;
-        font-size: 0.9rem;
-      }
-      .info-panel {
-        padding: 20px 16px;
-      }
-      .info-panel h2 {
-        font-size: 1.4rem;
-      }
-      .main-content {
-        margin-top: 110px;
-        padding: 0 15px;
-      }
-    }
-
-    .video-js .vjs-control-bar {
-      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-    }
-  </style>
-</head>
+</html>
